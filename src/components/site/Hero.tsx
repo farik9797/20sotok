@@ -12,6 +12,7 @@ export function Hero() {
   const reduce = useReducedMotion()
   const { open } = useQuiz()
   const item = (delay: number) => ({
+    'data-reveal': '' as const,
     initial: reduce ? false : { opacity: 0, y: 28 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 1.1, delay, ease: [0.22, 1, 0.36, 1] as const },

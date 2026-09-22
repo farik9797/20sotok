@@ -115,6 +115,7 @@
   .btn-lg { min-height: 60px; padding-inline: 2em; font-size: 1.02rem; }
   .laser-line { position: absolute; left: 0; right: 0; height: 2px; background: #FF3B30; box-shadow: 0 0 6px 1px rgba(255,59,48,.85), 0 0 22px 4px rgba(255,59,48,.35); pointer-events: none; }
   .laser-vline { position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(255,59,48,.55); box-shadow: 0 0 6px rgba(255,59,48,.6); pointer-events: none; }
+  html.prerender [data-reveal] { opacity: 1 !important; transform: none !important; }
   .skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 100; padding: .6rem 1rem; border-radius: 2px; background: #B8860B; color: #1B1F24; font-weight: 600; transition: top .2s; }
   .skip-link:focus { top: 1rem; }
   .prose-site p { margin-bottom: 1.1em; }

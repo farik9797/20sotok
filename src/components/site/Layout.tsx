@@ -6,6 +6,15 @@ import { Header } from './Header'
 import { QuizModal } from './QuizModal'
 import { QuizProvider } from './QuizContext'
 
+/** После гидратации пререндера держим блоки видимыми, пока не отработают первые reveal-анимации. */
+function PrerenderGate() {
+  useEffect(() => {
+    const t = setTimeout(() => document.documentElement.classList.remove('prerender'), 1500)
+    return () => clearTimeout(t)
+  }, [])
+  return null
+}
+
 function ScrollManager() {
   const { pathname, hash } = useLocation()
   useEffect(() => {
@@ -26,6 +35,7 @@ export function Layout() {
       <div className="grain">
         <a href="#main" className="skip-link">Перейти к содержанию</a>
         <ScrollManager />
+        <PrerenderGate />
         <Header />
         <main id="main">
           <Outlet />

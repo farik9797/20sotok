@@ -1,35 +1,28 @@
-import { lazy, StrictMode, Suspense } from 'react'
-import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router'
+import { StrictMode } from 'react'
+import { createRoot, hydrateRoot } from 'react-dom/client'
+import { createBrowserRouter, matchRoutes, RouterProvider } from 'react-router'
 import './index.css'
-import { Layout } from '@/components/site/Layout'
-import Home from '@/pages/Home'
+import { basename, routes } from './routes'
 
-const Service = lazy(() => import('@/pages/Service'))
-const Projects = lazy(() => import('@/pages/Projects'))
-const Blog = lazy(() => import('@/pages/Blog'))
-const NotFound = lazy(() => import('@/pages/NotFound'))
-const Fallback = () => <div className="sheet min-h-[60svh]" aria-busy="true" />
-const page = (el: React.ReactNode) => <Suspense fallback={<Fallback />}>{el}</Suspense>
+// Ленивые маршруты, совпавшие с текущим адресом, загружаем до гидратации —
+// иначе клиентская разметка не совпадёт с пререндером.
+const lazyMatches = matchRoutes(routes, window.location, basename)?.filter((m) => m.route.lazy)
+if (lazyMatches?.length) {
+  await Promise.all(lazyMatches.map(async (m) => {
+    const mod = await (m.route.lazy as () => Promise<object>)()
+    Object.assign(m.route, { ...mod, lazy: undefined })
+  }))
+}
 
-const router = createBrowserRouter(
-  [
-    {
-      element: <Layout />,
-      children: [
-        { path: '/', element: <Home /> },
-        { path: '/uslugi/:slug', element: page(<Service />) },
-        { path: '/proekty', element: page(<Projects />) },
-        { path: '/blog', element: page(<Blog />) },
-        { path: '*', element: page(<NotFound />) },
-      ],
-    },
-  ],
-  { basename: import.meta.env.BASE_URL.replace(/\/$/, '') },
-)
-
-createRoot(document.getElementById('root')!).render(
+const router = createBrowserRouter(routes, { basename })
+const app = (
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>,
+  </StrictMode>
 )
+const root = document.getElementById('root')!
+if (root.hasChildNodes()) {
+  hydrateRoot(root, app)
+} else {
+  createRoot(root).render(app)
+}

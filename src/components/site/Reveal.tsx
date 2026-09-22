@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import { motion, useInView, useReducedMotion } from 'motion/react'
 
 const hidden = { opacity: 0, y: 28 }
@@ -14,7 +14,7 @@ export function Reveal({ children, className, delay = 0, as = 'div' }: { childre
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
   const [seen, setSeen] = useState(false)
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = ref.current
     if (!el) return
     const r = el.getBoundingClientRect()
@@ -23,7 +23,7 @@ export function Reveal({ children, className, delay = 0, as = 'div' }: { childre
   const show = reduce || inView || seen
   const M = as === 'article' ? motion.article : as === 'li' ? motion.li : motion.div
   return (
-    <M ref={ref as never} initial={reduce ? false : hidden} animate={show ? visible : hidden}
+    <M ref={ref as never} data-reveal initial={reduce ? false : hidden} animate={show ? visible : hidden}
       transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }} className={className}>
       {children}
     </M>
