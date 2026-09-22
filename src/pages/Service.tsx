@@ -32,8 +32,8 @@ function ExtraBlock({ extra }: { extra: ExtraGrid | ExtraTable }) {
               {extra.rows.map((r) => (
                 <tr key={String(r[0])}>
                   <td className="w-[28%] border-t border-stone-2/15 p-4 align-top text-[.88rem] text-stone-2/62">{r[0]}</td>
-                  <td className={`border-t border-stone-2/15 p-4 align-top ${r[3] === 0 ? 'font-medium text-brass-2' : ''}`}>{r[1]}</td>
-                  <td className={`border-t border-stone-2/15 p-4 align-top ${r[3] === 1 ? 'font-medium text-brass-2' : ''}`}>{r[2]}</td>
+                  <td className={`border-t border-stone-2/15 p-4 align-top ${r[3] === 0 ? 'font-medium text-brass' : ''}`}>{r[1]}</td>
+                  <td className={`border-t border-stone-2/15 p-4 align-top ${r[3] === 1 ? 'font-medium text-brass' : ''}`}>{r[2]}</td>
                 </tr>
               ))}
             </tbody>
@@ -70,12 +70,12 @@ export default function Service() {
     <>
       <Seo title={p.seoTitle} description={p.seoDesc} path={`/uslugi/${p.slug}`} />
       <section className="relative isolate overflow-hidden bg-ink text-stone-2">
-        <div className="absolute inset-0 -z-10"><img src={img(p.hero)} alt="" aria-hidden="true" className="size-full object-cover" width={1600} height={1200} />
+        <div className="absolute inset-0 -z-10"><img src={img(p.hero)} alt="" aria-hidden="true" className="size-full object-cover [filter:brightness(.82)_saturate(.9)]" width={1600} height={1200} />
           <div className="absolute inset-0 bg-ink/45" /><div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(42,47,53,.45)_0%,rgba(42,47,53,.1)_35%,rgba(42,47,53,.78)_75%,#2A2F35_100%)]" /><div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(42,47,53,.7),transparent_65%)]" /></div>
         <div className="wrap flex flex-col justify-end pb-9 pt-28 md:min-h-[62vh] md:pb-14 md:pt-36">
-          <Reveal><div className="eyebrow mb-6">Услуга {p.n} · {p.tag}</div><h1 className="h1 lg:max-w-[30ch]">{p.h1}</h1></Reveal>
+          <Reveal><div className="eyebrow mb-6">Услуга {p.n} · {p.tag}</div><h1 className="h1 font-normal text-stone-2 [text-shadow:0_2px_30px_rgba(42,47,53,.65)] lg:max-w-[30ch]">{p.h1}</h1></Reveal>
           <div className="mt-8 grid gap-8 lg:grid-cols-12 lg:items-end">
-            <Reveal delay={0.1} className="lg:col-span-7"><p className="lead max-w-[50ch] text-stone-2/62">{p.lead}</p></Reveal>
+            <Reveal delay={0.1} className="lg:col-span-7"><p className="lead max-w-[50ch] text-stone [text-shadow:0_1px_18px_rgba(42,47,53,.6)]">{p.lead}</p></Reveal>
             <Reveal delay={0.15} className="grid gap-3 lg:col-span-5 lg:w-max lg:justify-self-end">
               <button type="button" onClick={() => scrollToId('raschet')} className="btn btn-brass btn-lg w-full">Рассчитать бюджет за 1 минуту <Icon name="arrow-right" className="size-4" /></button>
               <Link to="/proekty" className="btn btn-ghost btn-lg w-full">Проекты</Link>
@@ -87,7 +87,7 @@ export default function Service() {
                 <div key={s.label} className={`border-b border-stone-2/15 py-4 pr-5 md:border-b-0 md:border-r md:py-[18px] md:pr-7 ${i > 0 ? 'md:pl-7' : ''} md:last:border-r-0`}>
                   <dt className="sr-only">{s.label}</dt>
                   <dd className="font-heading text-[clamp(1.7rem,3vw,2.6rem)] font-extralight leading-none tracking-[-.03em] tabular-nums [&_b]:font-normal" dangerouslySetInnerHTML={{ __html: s.val }} />
-                  <dd className="mt-2 text-[.8rem] leading-snug text-stone-2/62">{s.label}</dd>
+                  <dd className="mt-2 text-[.8rem] leading-snug text-stone">{s.label}</dd>
                 </div>
               ))}
             </dl>
