@@ -100,7 +100,7 @@
   .h1 { font-family: var(--font-heading); font-weight: 300; letter-spacing: -.03em; line-height: 1.04; font-size: clamp(2.3rem, 4.5vw, 4.5rem); }
   .h2 { font-family: var(--font-heading); font-weight: 300; letter-spacing: -.025em; line-height: 1.06; font-size: clamp(2rem, 3.9vw, 3.75rem); }
   .h3 { font-family: var(--font-heading); font-weight: 500; letter-spacing: 0; line-height: 1.2; font-size: clamp(1.25rem, 1.7vw, 1.55rem); }
-  .lead { font-size: clamp(1.05rem, 1.35vw, 1.3rem); line-height: 1.55; }
+  .lead { font-size: clamp(1.05rem, 1.35vw, 1.3rem); line-height: 1.55; max-width: 50ch; }
   .btn { display: inline-flex; align-items: center; justify-content: center; gap: .6em; min-height: 52px; padding: .7em 1.6em; border-radius: 2px; font-weight: 500; font-size: .95rem; letter-spacing: .01em; line-height: 1.25; text-align: center; transition: background-color .2s, color .2s, border-color .2s, transform .2s; cursor: pointer; }
   @media (min-width: 640px) { .btn { white-space: nowrap; padding-block: 0; } }
   .btn:focus-visible { outline: 2px solid #B8860B; outline-offset: 3px; }

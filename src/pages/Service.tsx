@@ -73,12 +73,12 @@ export default function Service() {
         <div className="absolute inset-0 -z-10"><img src={img(p.hero)} alt="" aria-hidden="true" className="size-full object-cover" width={1600} height={1200} />
           <div className="absolute inset-0 bg-ink/45" /><div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(42,47,53,.45)_0%,rgba(42,47,53,.1)_35%,rgba(42,47,53,.78)_75%,#2A2F35_100%)]" /><div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(42,47,53,.7),transparent_65%)]" /></div>
         <div className="wrap flex flex-col justify-end pb-9 pt-28 md:min-h-[62vh] md:pb-14 md:pt-36">
-          <Reveal><div className="eyebrow mb-6">Услуга {p.n} · {p.tag}</div><h1 className="h1 lg:max-w-[20ch]">{p.h1}</h1></Reveal>
+          <Reveal><div className="eyebrow mb-6">Услуга {p.n} · {p.tag}</div><h1 className="h1 lg:max-w-[30ch]">{p.h1}</h1></Reveal>
           <div className="mt-8 grid gap-8 lg:grid-cols-12 lg:items-end">
-            <Reveal delay={0.1} className="lg:col-span-7"><p className="lead max-w-[62ch] text-stone-2/62">{p.lead}</p></Reveal>
-            <Reveal delay={0.15} className="flex flex-wrap gap-3 lg:col-span-5 lg:justify-end">
-              <button type="button" onClick={() => scrollToId('raschet')} className="btn btn-brass btn-lg w-full sm:w-auto">Рассчитать бюджет за 1 минуту <Icon name="arrow-right" className="size-4" /></button>
-              <Link to="/proekty" className="btn btn-ghost btn-lg w-full sm:w-auto">Проекты</Link>
+            <Reveal delay={0.1} className="lg:col-span-7"><p className="lead max-w-[50ch] text-stone-2/62">{p.lead}</p></Reveal>
+            <Reveal delay={0.15} className="grid gap-3 lg:col-span-5 lg:w-max lg:justify-self-end">
+              <button type="button" onClick={() => scrollToId('raschet')} className="btn btn-brass btn-lg w-full">Рассчитать бюджет за 1 минуту <Icon name="arrow-right" className="size-4" /></button>
+              <Link to="/proekty" className="btn btn-ghost btn-lg w-full">Проекты</Link>
             </Reveal>
           </div>
           <Reveal delay={0.2}>

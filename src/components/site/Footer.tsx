@@ -4,7 +4,7 @@ import { asset } from '@/lib/site'
 import { Icon, InstagramIcon, TelegramIcon, ViberIcon } from './Icon'
 
 export function Footer() {
-  const msg = 'inline-flex min-h-12 items-center gap-2.5 border border-stone-2/15 px-4 text-[.92rem] font-medium transition-colors hover:border-stone-2/50 hover:bg-stone-2/5'
+  const msg = 'inline-flex min-h-12 items-center justify-center gap-2.5 border border-stone-2/15 px-4 text-[.92rem] font-medium transition-colors hover:border-stone-2/50 hover:bg-stone-2/5'
   return (
     <footer id="kontakty" className="scroll-mt-20 border-t border-stone-2/15 bg-ink-2 text-stone-2">
       <div className="wrap py-16 md:py-20">
@@ -31,7 +31,7 @@ export function Footer() {
             <h5 className="mb-5 text-[11px] font-medium uppercase tracking-[.18em] text-stone-2/62">Связаться</h5>
             <a href={`tel:${brand.phoneTel}`} className="font-heading text-2xl font-light tracking-tight">{brand.phoneDisplay}</a>
             <p className="mt-2 text-[.9rem] text-stone-2/62">Ежедневно 9:00–20:00 · <a href={`mailto:${brand.email}`} className="underline decoration-brass/60 underline-offset-4">{brand.email}</a></p>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:w-max">
               <a className={msg} href={brand.telegram} target="_blank" rel="noopener"><TelegramIcon className="size-5" /> Написать в Telegram</a>
               <a className={msg} href={brand.viber}><ViberIcon className="size-5" /> Написать в Viber</a>
             </div>

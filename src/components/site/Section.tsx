@@ -24,7 +24,7 @@ export function SectionHead({ n, eyebrow, title, lead, aside, wide, light }: { n
         </div>
         <h2 className="h2">{title}</h2>
       </div>
-      {lead && <p className={cn('lead max-w-[62ch]', light ? 'text-ink/65' : 'text-stone-2/62')}>{lead}</p>}
+      {lead && <p className={cn('lead max-w-[50ch]', light ? 'text-ink/65' : 'text-stone-2/62')}>{lead}</p>}
       {aside}
     </Reveal>
   )

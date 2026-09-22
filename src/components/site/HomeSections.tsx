@@ -130,7 +130,7 @@ export function Portfolio() {
   return (
     <Section id="portfolio">
       <SectionHead n="06" eyebrow="Портфолио" title="Реальные объекты в Минске и Минском районе — каждую неделю в Instagram" wide
-        aside={<div className="flex flex-wrap gap-3 lg:justify-end"><a className="btn btn-ghost" href={brand.instagram} target="_blank" rel="noopener"><InstagramIcon className="size-4" /> Открыть Instagram</a><Link className="btn btn-ghost" to="/proekty">Инженерные кейсы <Icon name="arrow-right" className="size-4" /></Link></div>} />
+        aside={<div className="grid gap-3 sm:grid-cols-2 lg:w-max lg:justify-self-end"><a className="btn btn-ghost" href={brand.instagram} target="_blank" rel="noopener"><InstagramIcon className="size-4" /> Открыть Instagram</a><Link className="btn btn-ghost" to="/proekty">Инженерные кейсы <Icon name="arrow-right" className="size-4" /></Link></div>} />
       <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-6">
         {photos.map((g, i) => (
           <Reveal key={g.img} delay={i * 0.05}>

@@ -29,12 +29,12 @@ export function Hero() {
       <LaserLevel containerRef={ref} />
       <div className="wrap relative z-[4] flex flex-col justify-end pb-9 pt-28 md:min-h-[100svh] md:pb-14 md:pt-36">
         <motion.div {...item(0.15)} className="eyebrow mb-6">{hero.eyebrow}</motion.div>
-        <motion.h1 {...item(0.27)} className="h1 lg:max-w-[21ch]">{hero.title}</motion.h1>
+        <motion.h1 {...item(0.27)} className="h1 lg:max-w-[30ch]">{hero.title}</motion.h1>
         <div className="mt-8 grid gap-8 lg:mt-10 lg:grid-cols-12 lg:items-end">
-          <motion.p {...item(0.39)} className="lead max-w-[62ch] text-stone-2/62 lg:col-span-7">{hero.lead}</motion.p>
-          <motion.div {...item(0.51)} className="flex flex-wrap gap-3 lg:col-span-5 lg:justify-end">
-            <button type="button" onClick={() => open()} className="btn btn-brass btn-lg w-full sm:w-auto">{hero.cta} <Icon name="arrow-right" className="size-4" /></button>
-            <Link to="/proekty" className="btn btn-ghost btn-lg w-full sm:w-auto">{hero.ctaSecondary}</Link>
+          <motion.p {...item(0.39)} className="lead max-w-[50ch] text-stone-2/62 lg:col-span-7">{hero.lead}</motion.p>
+          <motion.div {...item(0.51)} className="grid gap-3 lg:col-span-5 lg:w-max lg:justify-self-end">
+            <button type="button" onClick={() => open()} className="btn btn-brass btn-lg w-full">{hero.cta} <Icon name="arrow-right" className="size-4" /></button>
+            <Link to="/proekty" className="btn btn-ghost btn-lg w-full">{hero.ctaSecondary}</Link>
           </motion.div>
         </div>
         <motion.dl {...item(0.63)} className="mt-10 grid grid-cols-2 border-t border-stone-2/15 md:grid-cols-4 lg:mt-12">
