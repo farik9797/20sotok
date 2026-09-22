@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
+import { DriftNum } from './Effects'
 import { Reveal } from './Reveal'
 
 type Tone = 'ink' | 'sheet' | 'light'
@@ -19,7 +20,7 @@ export function SectionHead({ n, eyebrow, title, lead, aside, wide, light }: { n
     <Reveal className={cn('mb-10 grid gap-5 lg:mb-16 lg:items-end', wide ? 'lg:grid-cols-[2fr_1fr]' : 'lg:grid-cols-2')}>
       <div>
         <div className="mb-5 flex items-baseline gap-4">
-          <span className={cn('num text-[clamp(3.2rem,6vw,6rem)]', light ? 'text-ink' : 'text-stone-2/90')}>{n}</span>
+          <DriftNum className={cn('num text-[clamp(3.2rem,6vw,6rem)]', light ? 'text-ink' : 'text-stone-2/90')}>{n}</DriftNum>
           <span className="eyebrow -translate-y-[.6em]">{eyebrow}</span>
         </div>
         <h2 className="h2">{title}</h2>

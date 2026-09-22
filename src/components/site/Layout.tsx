@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router'
 import { scrollToId } from '@/lib/site'
+import { BackToTop, Cursor, ScrollProgress } from './Effects'
 import { Footer } from './Footer'
 import { Header } from './Header'
 import { QuizModal } from './QuizModal'
@@ -42,6 +43,9 @@ export function Layout() {
         </main>
         <Footer />
         <QuizModal />
+        <ScrollProgress />
+        <BackToTop />
+        <Cursor />
       </div>
     </QuizProvider>
   )

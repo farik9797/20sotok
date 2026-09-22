@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import { motion, useReducedMotion } from 'motion/react'
 import { hero } from '@/data/content'
 import { asset } from '@/lib/site'
+import { CountUp } from './Effects'
 import { Icon } from './Icon'
 import { LaserLevel } from './LaserLevel'
 import { useQuiz } from './QuizContext'
@@ -41,7 +42,7 @@ export function Hero() {
           {hero.specs.map((s, i) => (
             <div key={s.label} className={`border-b border-stone-2/15 py-4 pr-5 md:border-b-0 md:border-r md:py-[18px] md:pr-7 ${i > 0 ? 'md:pl-7' : ''} md:last:border-r-0`}>
               <dt className="sr-only">{s.label}</dt>
-              <dd className="font-heading text-[clamp(1.7rem,3vw,2.6rem)] font-extralight leading-none tracking-[-.03em] tabular-nums [text-shadow:0_1px_14px_rgba(42,47,53,.6)]">{s.val}<b className="font-normal">{s.b}</b></dd>
+              <dd className="font-heading text-[clamp(1.7rem,3vw,2.6rem)] font-extralight leading-none tracking-[-.03em] tabular-nums [text-shadow:0_1px_14px_rgba(42,47,53,.6)]"><CountUp value={Number(s.val)} /><b className="font-normal">{s.b}</b></dd>
               <dd className="mt-1.5 text-[.76rem] leading-snug text-stone md:mt-2 md:text-[.8rem]">{s.label}</dd>
             </div>
           ))}

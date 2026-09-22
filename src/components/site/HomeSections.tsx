@@ -1,7 +1,9 @@
+import { useRef } from 'react'
 import { Link } from 'react-router'
 import { Marquee } from '@/components/ui/marquee'
 import { brand, catalog, director, features, gallery, steps } from '@/data/content'
 import { img } from '@/lib/site'
+import { CountUp, DriftNum, ParallaxImg, StepsLine } from './Effects'
 import { Icon, InstagramIcon } from './Icon'
 import { useQuiz } from './QuizContext'
 import { Reveal } from './Reveal'
@@ -44,9 +46,9 @@ export function Catalog() {
       <div className="grid gap-5 md:grid-cols-2 lg:gap-7">
         {catalog.map((c, i) => (
           <Reveal key={c.slug} delay={(i % 2) * 0.1}>
-            <Link to={`/uslugi/${c.slug}`} className="group relative block overflow-hidden border border-stone-2/15 bg-ink-2 transition-transform duration-300 hover:-translate-y-0.5">
+            <Link to={`/uslugi/${c.slug}`} data-cursor-label="Подробнее" className="group relative block overflow-hidden border border-stone-2/15 bg-ink-2 transition-transform duration-300 hover:-translate-y-0.5">
               <div className="aspect-[4/3] overflow-hidden">
-                <img src={img(c.img)} alt={c.title} loading="lazy" decoding="async" width={1600} height={1200} className="size-full object-cover transition-transform duration-1000 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.045]" />
+                <ParallaxImg src={img(c.img)} alt={c.title} loading="lazy" decoding="async" width={1600} height={1200} strength={6} className="size-full object-cover transition-[filter] duration-700 group-hover:brightness-110" />
               </div>
               <span className="absolute left-[18px] top-[18px] border border-stone-2/15 bg-ink/70 px-[11px] py-[7px] text-[10.5px] font-medium uppercase tracking-[.16em] backdrop-blur-sm">{c.n} / {c.tag}</span>
               <div className="grid grid-cols-[auto_1fr_auto] items-start gap-x-5 px-7 pb-8 pt-6">
@@ -68,13 +70,13 @@ export function Director() {
       <div className="grid items-start gap-12 lg:grid-cols-12">
         <Reveal className="lg:col-span-5">
           <div className="relative overflow-hidden bg-ink-3">
-            <img src={img(director.img)} alt={`${director.name}, ${director.role.toLowerCase()}`} loading="lazy" decoding="async" width={1342} height={2000} className="aspect-[2/3] size-full object-cover" />
+            <ParallaxImg src={img(director.img)} alt={`${director.name}, ${director.role.toLowerCase()}`} loading="lazy" decoding="async" width={1342} height={2000} strength={5} className="aspect-[2/3] size-full object-cover" />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/75 via-transparent to-transparent" />
             <div className="absolute inset-x-4 bottom-3.5 flex justify-between text-[11px] font-medium uppercase tracking-[.14em] text-stone-2/85"><span>{director.name}</span><span>{director.role.split(',')[0]}</span></div>
           </div>
         </Reveal>
         <Reveal delay={0.1} className="lg:col-span-7 lg:pl-8">
-          <div className="mb-5 flex items-baseline gap-4"><span className="num text-[clamp(3.2rem,6vw,6rem)] text-ink">04</span><span className="eyebrow -translate-y-[.6em]">{director.eyebrow}</span></div>
+          <div className="mb-5 flex items-baseline gap-4"><DriftNum className="num text-[clamp(3.2rem,6vw,6rem)] text-ink">04</DriftNum><span className="eyebrow -translate-y-[.6em]">{director.eyebrow}</span></div>
           <h2 className="h2">{director.title}</h2>
           <div className="prose-site mt-8 max-w-[66ch] text-[1.06rem] text-ink/85">{director.text.map((p) => <p key={p}>{p}</p>)}</div>
           <div className="mt-8 flex items-center gap-5">
@@ -84,7 +86,7 @@ export function Director() {
           <dl className="mt-12 grid gap-x-8 sm:grid-cols-3">
             {director.stats.map((s) => (
               <div key={s.label} className="border-t border-ink/15 py-6">
-                <dd className="num text-[clamp(2.8rem,4vw,4rem)]">{s.val}<span className="font-normal">{s.b}</span></dd>
+                <dd className="num text-[clamp(2.8rem,4vw,4rem)]"><CountUp value={Number(s.val)} /><span className="font-normal">{s.b}</span></dd>
                 <dt className="mt-2 text-[.92rem] text-ink/65">{s.label}</dt>
               </div>
             ))}
@@ -97,18 +99,20 @@ export function Director() {
 
 export function Process() {
   const { open } = useQuiz()
+  const stepsRef = useRef<HTMLDivElement>(null)
   return (
     <Section id="process" tone="sheet">
       <div className="grid gap-12 lg:grid-cols-12">
         <Reveal className="lg:col-span-4">
           <div className="lg:sticky lg:top-28">
-            <div className="mb-5 flex items-baseline gap-4"><span className="num text-[clamp(3.2rem,6vw,6rem)] text-stone-2/90">05</span><span className="eyebrow -translate-y-[.6em]">Как проходит работа</span></div>
+            <div className="mb-5 flex items-baseline gap-4"><DriftNum className="num text-[clamp(3.2rem,6vw,6rem)] text-stone-2/90">05</DriftNum><span className="eyebrow -translate-y-[.6em]">Как проходит работа</span></div>
             <h2 className="h2">От расчёта до гарантии — без вашего участия в стройке</h2>
             <p className="mt-6 text-stone-2/62">Пять шагов, на каждом из которых у вас есть цифры, документ или видеоотчёт.</p>
             <button type="button" onClick={() => open()} className="btn btn-brass mt-8">Начать с расчёта <Icon name="arrow-right" className="size-4" /></button>
           </div>
         </Reveal>
-        <div className="border-b border-stone-2/15 lg:col-span-8">
+        <div ref={stepsRef} className="relative border-b border-stone-2/15 pl-7 lg:col-span-8">
+          <StepsLine containerRef={stepsRef} />
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 0.06} className="grid grid-cols-[72px_1fr] gap-6 border-t border-stone-2/15 py-8">
               <div className="num text-[2.6rem] text-stone-2/62">{s.n}</div>
@@ -134,7 +138,7 @@ export function Portfolio() {
       <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-6">
         {photos.map((g, i) => (
           <Reveal key={g.img} delay={i * 0.05}>
-            <a href={brand.instagram} target="_blank" rel="noopener" className="group relative block aspect-square overflow-hidden bg-ink-3" aria-label={`Открыть публикацию в Instagram: ${g.alt}`}>
+            <a href={brand.instagram} target="_blank" rel="noopener" data-cursor-label="Instagram" className="group relative block aspect-square overflow-hidden bg-ink-3" aria-label={`Открыть публикацию в Instagram: ${g.alt}`}>
               <img src={img(g.img)} alt={g.alt} loading="lazy" decoding="async" width={800} height={800} className="size-full object-cover transition-[transform,opacity] duration-1000 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-105 group-hover:opacity-75" />
               <span className="absolute inset-0 grid place-items-center opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"><InstagramIcon className="size-8" /></span>
             </a>

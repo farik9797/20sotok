@@ -1,13 +1,14 @@
 import { Link } from 'react-router'
 import { tagNames, type Case } from '@/data/content'
 import { img } from '@/lib/site'
+import { ParallaxImg } from './Effects'
 import { Icon } from './Icon'
 
 export function CaseCard({ c }: { c: Case }) {
   return (
-    <Link to={`/proekty#${c.id}`} className="group block border border-stone-2/15 bg-ink-2 transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-stone-2/40">
+    <Link to={`/proekty#${c.id}`} data-cursor-label="Кейс" className="group block border border-stone-2/15 bg-ink-2 transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-stone-2/40">
       <div className="relative aspect-[4/3] overflow-hidden bg-ink-3">
-        <img src={img(c.img)} alt={`${c.title} — ${c.place}`} loading="lazy" decoding="async" width={1600} height={1200} className="size-full object-cover transition-transform duration-1000 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.04]" />
+        <ParallaxImg src={img(c.img)} alt={`${c.title} — ${c.place}`} loading="lazy" decoding="async" width={1600} height={1200} strength={6} className="size-full object-cover transition-[filter] duration-700 group-hover:brightness-110" />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/75 via-transparent to-transparent" />
         <div className="absolute inset-x-4 bottom-3.5 flex justify-between text-[11px] font-medium uppercase tracking-[.14em] text-stone-2/85"><span>{c.place}</span><span>{c.year}</span></div>
       </div>

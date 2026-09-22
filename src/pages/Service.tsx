@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router'
 import { CaseCard } from '@/components/site/CaseCard'
+import { DriftNum, ParallaxImg } from '@/components/site/Effects'
 import { Icon } from '@/components/site/Icon'
 import { Infographic } from '@/components/site/Infographic'
 import { Quiz } from '@/components/site/Quiz'
@@ -70,7 +71,7 @@ export default function Service() {
     <>
       <Seo title={p.seoTitle} description={p.seoDesc} path={`/uslugi/${p.slug}`} />
       <section className="relative isolate overflow-hidden bg-ink text-stone-2">
-        <div className="absolute inset-0 -z-10"><img src={img(p.hero)} alt="" aria-hidden="true" className="size-full object-cover [filter:brightness(.82)_saturate(.9)]" width={1600} height={1200} />
+        <div className="absolute inset-0 -z-10"><ParallaxImg src={img(p.hero)} alt="" aria-hidden="true" strength={7} className="size-full object-cover [filter:brightness(.82)_saturate(.9)]" width={1600} height={1200} />
           <div className="absolute inset-0 bg-ink/45" /><div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(42,47,53,.45)_0%,rgba(42,47,53,.1)_35%,rgba(42,47,53,.78)_75%,#2A2F35_100%)]" /><div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(42,47,53,.7),transparent_65%)]" /></div>
         <div className="wrap flex flex-col justify-end pb-9 pt-28 md:min-h-[62vh] md:pb-14 md:pt-36">
           <Reveal><div className="eyebrow mb-6">Услуга {p.n} · {p.tag}</div><h1 className="h1 font-normal text-stone-2 [text-shadow:0_2px_30px_rgba(42,47,53,.65)] lg:max-w-[30ch]">{p.h1}</h1></Reveal>
@@ -122,11 +123,11 @@ export default function Service() {
       <Section id="expert" tone="light">
         <div className="grid gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-5">
-            <div className="mb-5 flex items-baseline gap-4"><span className="num text-[clamp(3.2rem,6vw,6rem)] text-ink">03</span><span className="eyebrow -translate-y-[.6em]">Экспертный блок</span></div>
+            <div className="mb-5 flex items-baseline gap-4"><DriftNum className="num text-[clamp(3.2rem,6vw,6rem)] text-ink">03</DriftNum><span className="eyebrow -translate-y-[.6em]">Экспертный блок</span></div>
             <h2 className="h2">{p.expTitle}</h2>
             <p className="mt-6 flex items-start gap-2 text-[.85rem] text-ink/65"><Icon name="file-pen-line" className="mt-0.5 size-4 shrink-0" /> Блок редактируется в админке сайта: статьи, фото, схемы дополняются по мере накопления кейсов.</p>
             <div className="relative mt-8 overflow-hidden bg-ink-3">
-              <img src={img(p.expImg)} alt={p.expTitle} loading="lazy" decoding="async" width={1600} height={1200} className="aspect-[4/3] size-full object-cover" />
+              <ParallaxImg src={img(p.expImg)} alt={p.expTitle} loading="lazy" decoding="async" width={1600} height={1200} strength={5} className="aspect-[4/3] size-full object-cover" />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/75 via-transparent to-transparent" />
               <div className="absolute inset-x-4 bottom-3.5 text-[11px] font-medium uppercase tracking-[.14em] text-stone-2/85">{p.expImgCap}</div>
             </div>
@@ -144,7 +145,7 @@ export default function Service() {
         <div className="grid items-start gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-4">
             <div className="lg:sticky lg:top-28">
-              <div className="mb-5 flex items-baseline gap-4"><span className="num text-[clamp(3.2rem,6vw,6rem)] text-stone-2/90">05</span><span className="eyebrow -translate-y-[.6em]">Расчёт</span></div>
+              <div className="mb-5 flex items-baseline gap-4"><DriftNum className="num text-[clamp(3.2rem,6vw,6rem)] text-stone-2/90">05</DriftNum><span className="eyebrow -translate-y-[.6em]">Расчёт</span></div>
               <h2 className="h2">Предварительный бюджет — за 1 минуту</h2>
               <p className="mt-6 text-stone-2/62">Три вопроса. Ответ — цифры и примеры похожих объектов в Telegram или Viber. Выезд инженера на участок платный, стоимость засчитывается в смету.</p>
             </div>
